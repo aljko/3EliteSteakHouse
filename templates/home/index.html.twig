@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        {% for texte in texteAccueil %}
+            <h1 class="titreHomeAdmin">{{ texte.titre }}</h1>
+            <p class="textHomeAdmin">{{ texte.contenu }}</p>
+            <a class="btnHomeAdmin" href="{{ path('article_edit', {'id': texte.id}) }}">edit</a>
+        {% endfor %}
+
+    {% elseif is_granted('ROLE_SUBSCRIBER') or not is_granted('ROLE_ADMIN') or not is_granted('ROLE_SUBSCRIBER') %}
+
+        <div class="fondEcran"></div>
+        <div class="texteAccueil">
+
+            {% for texte in texteAccueil %}
+                <h1 class="titreHome">{{ texte.titre }}</h1>
+                <p class="textHome">{{ texte.contenu }}</p>
+            {% endfor %}
+
+        </div>
+        <div class="fondGalleryExtrait"></div>
+        <li><a class="btn btnAccueil1" href="{{ path('gallery_index') }}">Gallerie</a></li>
+        <!-- LightWidget WIDGET -->
+        <div class="blockGalleryAccueil">
+            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+            <iframe src="//lightwidget.com/widgets/2405c3e0224a5c44892d2f3a4e6ad3f3.html"
+                    scrolling="no" allowtransparency="true"
+                    class="lightwidget-widget"
+                    style="width:80%;border:0;overflow:hidden;">
+            </iframe>
+        </div>
+        <div class="photoHome"></div>
+        <div class="photoHome2"></div>
+        <div class="blockPhotoHome3">
+            <div class="photoHome3"></div>
+            <a class="btn btnAccueil" href="{{ path('franchise_index') }}">Devenez franchisé ?</a>
+        </div>
+        <div class="photoHomeFreres"></div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block frooter %}
+
+    {% include 'header/footer.html.twig' %}
+
+{% endblock %}

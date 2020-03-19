@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="blockImgFranchise">
+        <img class="imgFranchise" alt="image du restaurant">
+    </div>
+    <div class="contenu">
+        <h1 class="titleFranchise1" >Elite SteakHouse</h1>
+        <h1 class="titleFranchise2" >Notre Instagram</h1>
+
+        <!-- LightWidget WIDGET -->
+        <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+        <div class="instaBlock">
+            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/6ef7206dd3df5dbfaab4f87e54b0d157.html" scrolling="no" allowtransparency="true" class="lightwidget-widget"></iframe>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block frooter %}
+
+    {% include 'header/footer.html.twig' %}
+
+{% endblock %}

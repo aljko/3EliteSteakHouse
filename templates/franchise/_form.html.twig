@@ -1,0 +1,36 @@
+{{ form_start(ourFormFranchise) }}
+
+    <div class="formBlock">
+
+        {{ form_label(ourFormFranchise.titre, 'Nom', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(ourFormFranchise.titre, { 'attr': {'class': 'form-control formWidget'} }) }}
+
+        {{ form_label(ourFormFranchise.auteur, 'Objet de votre demande', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(ourFormFranchise.auteur, { 'attr': {'class': 'form-control formWidget'} }) }}
+
+        {{ form_label(ourFormFranchise.contenu, 'Description', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(ourFormFranchise.contenu, { 'attr': {'class': 'form-control formWidget contenuRow'} }) }}
+
+        <div class="contactContentBlock">
+            <div class="contactBlock">
+                {{ form_label(ourFormFranchise.telephone, 'Telephone', {'label_attr': {'class': 'formLabel'} }) }}
+                {{ form_widget(ourFormFranchise.telephone, { 'attr': {'class': 'form-control formWidget'} }) }}
+            </div>
+            <div class="contactBlock2">
+                {{ form_label(ourFormFranchise.mail, 'Email', {'label_attr': {'class': 'formLabel'} }) }}
+                {{ form_widget(ourFormFranchise.mail, { 'attr': {'class': 'form-control formWidget'} }) }}
+            </div>
+        </div>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" style="color: #1b9448">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="btnContent">
+            <button class="btnForm" type="submit" name="Vous franchiser">Vous franchiser</button>
+        </div>
+    </div>
+
+{{ form_end(ourFormFranchise) }}

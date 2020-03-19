@@ -1,0 +1,29 @@
+{#{% form_theme registrationForm 'bootstrap_4_horizontal_layout.html.twig' %}#}
+
+{{ form_start(registrationForm) }}
+
+<div class="formBlock">
+
+    {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'formLabel'} }) }}
+    {{ form_widget(registrationForm.email, { 'attr': {'class': 'form-control formWidget'} }) }}
+
+    {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'formLabel'} }) }}
+    {{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'form-control formWidget'} }) }}
+
+    <div class="blockAgreeTerms">
+        <label for="registration_form_agreeTerms" class="formLabel required">Accepter les termes</label>
+        {{ form_widget(registrationForm.agreeTerms, { 'attr': {'class': 'form-control formWidgetTerms'} }) }}
+    </div>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" style="color: #1b9448">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="btnContent">
+        <button class="btnForm" type="submit" name="S'enregistrer">S'enregistrer</button>
+    </div>
+</div>
+
+{{ form_end(registrationForm) }}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plat index{% endblock %}
+
+{% block body %}
+
+    <div class="blockImgFranchise">
+        <img class="imgFranchise" alt="image du restaurant">
+    </div>
+
+    <div class="contenu">
+        <h1 class="titleFranchise1" >Elite SteakHouse</h1>
+        <h1 class="titleFranchise2" >La carte de notre restaurant</h1>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <h1 class="lienAdmin"><a href="{{ path('plat_new') }}">Ajouter un nouveau plat.</a></h1>
+        {% endif %}
+
+        <div class="container">
+            <div class="row">
+            {% for plat in plats %}
+                <div class="card col-md-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plat.nom }}</h5>
+                        <p class="card-text">{{ plat.description }}</p>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('plat_show', {'id': plat.id}) }}">Voir</a>
+                            <a href="{{ path('plat_edit', {'id': plat.id}) }}">Editer</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block frooter %}
+
+    {% include 'header/footer.html.twig' %}
+
+{% endblock %}

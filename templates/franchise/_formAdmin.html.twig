@@ -1,0 +1,25 @@
+{{ form_start(adminFormFranchise) }}
+
+<div class="container mt-5">
+    <div class="formBlock row d-flex">
+
+        {{ form_label(adminFormFranchise.titre, 'Nom', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(adminFormFranchise.titre, { 'attr': {'class': 'form-control formWidget'} }) }}
+
+        {{ form_label(adminFormFranchise.contenu, 'Description', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(adminFormFranchise.contenu, { 'attr': {'class': 'form-control formWidget contenuRow'} }) }}
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" style="color: #1b9448">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="btnContent mt-5">
+            <button class="btnForm" type="submit" name="Editer">Editer</button>
+        </div>
+    </div>
+</div>
+
+
+{{ form_end(adminFormFranchise) }}

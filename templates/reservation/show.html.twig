@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+
+        <h1>Reservation shox</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Date</th>
+                    <td>{{ reservation.date ? reservation.date|date('Y-m-d H:i') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de personnes</th>
+                    <td>{{ reservation.personnes }}</td>
+                </tr>
+                <tr>
+                    <th>EtatReservation</th>
+                    <td>{{ reservation.etatReservation }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">Modifiez votre résèrvation</a>
+
+        {{ include('reservation/_delete_form.html.twig') }}
+
+{% endblock %}

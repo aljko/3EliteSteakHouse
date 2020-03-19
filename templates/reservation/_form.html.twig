@@ -1,0 +1,27 @@
+{#{% form_theme ourFormReservation 'bootstrap_4_horizontal_layout.html.twig' %}#}
+
+{{ form_start(ourFormReservation) }}
+
+    <div class="formBlockResa">
+
+        {{ form_label(ourFormReservation.nom, 'Nom', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(ourFormReservation.nom, { 'attr': {'class': 'formWidget'} }) }}
+
+        {{ form_label(ourFormReservation.personnes, 'Nombre de personnes', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(ourFormReservation.personnes, { 'attr': {'class': 'formWidget'} }) }}
+
+        {{ form_label(ourFormReservation.date, 'Date et heure', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(ourFormReservation.date, { 'attr': {'class': 'formWidget blockDate'} }) }}
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" style="color: #1b9448">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="btnContent">
+            <button class="btnForm" type="submit" name="Réserver">Réserver</button>
+        </div>
+    </div>
+
+{{ form_end(ourFormReservation) }}

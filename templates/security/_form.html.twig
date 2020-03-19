@@ -1,0 +1,25 @@
+<form class="formBlock" method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <label for="inputEmail" class="inputForm">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control formWidget" required autofocus>
+
+    <label for="inputPassword" class="inputForm">Mot de passe</label>
+    <input type="password" name="password" id="inputPassword" class="form-control formWidget2" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <div class="btnContent">
+        <button class="btnForm" type="submit" name="Se connecter">Se connecter</button>
+    </div>
+</form>

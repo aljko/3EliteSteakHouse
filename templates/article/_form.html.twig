@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+
+<div class="container mt-5">
+    <div class="formBlock row d-flex">
+
+        {{ form_label(form.titre, 'Titre', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(form.titre, { 'attr': {'class': 'form-control formWidget'} }) }}
+
+        {{ form_label(form.contenu, 'Contenu', {'label_attr': {'class': 'formLabel'} }) }}
+        {{ form_widget(form.contenu, { 'attr': {'class': 'form-control formWidget'} }) }}
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" style="color: #1b9448">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="btnContent mt-5">
+            <button class="btnForm" type="submit" name="Editer">Editer</button>
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}

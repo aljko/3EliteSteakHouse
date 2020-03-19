@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Plat{% endblock %}
+
+{% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <h1>Create new Plat</h1>
+        {{ include('plat/_form.html.twig') }}
+        <a href="{{ path('plat_index') }}">back to list</a>
+    {% else%}
+        <h1>accès non autorisé</h1>
+    {% endif %}
+
+{% endblock %}

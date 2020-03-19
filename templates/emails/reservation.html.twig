@@ -1,0 +1,16 @@
+{# templates/emails/reservation.html.twig #}
+
+<h1>
+    Mme ou Mr "<b>{{ username }}</b>" vient de remplire le formulaire pour une réservation.
+</h1>
+
+<p>
+    A la date du : {{ date }}
+</p>
+
+
+<p>
+    Son adresse mail <code>{{ mailClient }}</code>
+</p>
+
+<code><a href="{{ path('adminReservation_index') }}">A confirmer ou non</a></code>

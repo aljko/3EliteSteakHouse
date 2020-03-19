@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>{% block title %}Welcome!{% endblock %}</title>
+            <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+            {{ encore_entry_link_tags('app') }}
+            {% block stylesheets %}
+
+            {% endblock %}
+        </head>
+
+        <header>
+
+            {% block header %}{% include 'header/navbar.html.twig' %}{% endblock %}
+
+        </header>
+
+        <body>
+
+        {% block body %}{% endblock %}
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block frooter %}{% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+        </body>
+    </html>

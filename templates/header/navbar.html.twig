@@ -1,0 +1,42 @@
+<nav>
+
+    <ul class="navLeft">
+        <li><a class="btnLink" href="/">Logo</a></li>
+        <li><a class="btnLink" href="{{ path('plat_index') }}">Menu</a></li>
+        <li><a class="btnLink" href="{{ path('restaurant_index') }}">Nos Restaurants</a></li>
+        <li><a class="btnLink" href="{{ path('gallery_index') }}">Gallerie</a></li>
+    </ul>
+
+    <ul class="navRight">
+        <li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn" href="{{ path('adminFranchise_index') }}">Devenez franchisé ?</a></li>
+            {% elseif is_granted('ROLE_SUBSCRIBER') or not is_granted('ROLE_ADMIN') or not is_granted('ROLE_SUBSCRIBER') %}
+                <a class="btn" href="{{ path('franchise_index') }}">Devenez franchisé ?</a>
+            {% endif %}
+        <li>
+            {% if is_granted('ROLE_SUBSCRIBER') %}
+                <a class="btn" href="{{ path('reservation_new') }}">Réservation</a>
+            {% elseif is_granted('ROLE_ADMIN') %}
+                <a class="btn" href="{{ path('adminReservation_index') }}">Réservation</a>
+            {% elseif not is_granted('ROLE_ADMIN') or not is_granted('ROLE_SUBSCRIBER') %}
+                <a class="btn" href="{{ path('app_login') }}">Réservation</a>
+            {% endif %}
+        </li>
+        <li>
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUBSCRIBER') %}
+            {% elseif not is_granted('ROLE_ADMIN') or not is_granted('ROLE_SUBSCRIBER') %}
+                <a class="btn" href="{{ path('app_register') }}"> Créer un compte</a>
+            {% endif %}
+        </li>
+        <li>
+            {% if app.user %}
+
+                <a class="btn" href="{{ path('app_logout') }}"> Se déconnecter</a>
+            {% else %}
+                <a class="btn" href="{{ path('app_login') }}"> Se connecter</a>
+            {% endif %}
+        </li>
+    </ul>
+
+</nav>

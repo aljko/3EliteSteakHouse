@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <h1>Devenez franchisé (admin)!</h1>
+
+        <h5>Article index</h5>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.titre }}</td>
+                    <td>{{ article.contenu }}</td>
+                    <td>
+                        <a href="{{ path('adminFranchise_edit', {'id': article.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('adminFranchise_new') }}">Create new</a>
+
+    {% elseif is_granted('ROLE_SUBSCRIBER') or not is_granted('ROLE_ADMIN') or not is_granted('ROLE_SUBSCRIBER') %}
+
+        <div class="blockImgFranchise">
+            <img class="imgFranchise" alt="image du restaurant">
+        </div>
+        <div class="contenu">
+            <h1 class="titleFranchise1" >Notre expértise</h1>
+            <h1 class="titleFranchise2" >Les franchisés</h1>
+            <p class="laberFranchise1" >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Amet ducimus nemo officia totam ullam. Accusantium aliquid architecto blanditiis eum excepturi minus nulla,
+                quam sequi! Deleniti perspiciatis sapiente sit ut! Iste? Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Amet ducimus nemo officia totam ullam. Accusantium aliquid architecto blanditiis eum excepturi
+                minus nulla, quam sequi! Deleniti perspiciatis sapiente sit ut! Iste?
+            </p>
+
+            <h3 class="smallTitleFranchise" >Des outils métiers sur-mesure pour bien gérer le réseau de franchise</h3>
+
+            <p class="laberFranchise2" >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Amet ducimus nemo officia totam ullam. Accusantium aliquid architecto blanditiis eum excepturi minus nulla,
+                quam sequi! Deleniti perspiciatis sapiente sit ut! Iste? Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Amet ducimus nemo officia totam ullam. Accusantium aliquid architecto blanditiis eum excepturi
+                minus nulla, quam sequi! Deleniti perspiciatis sapiente sit ut! Iste?
+            </p>
+            <div class="contenuFom">
+                {{ include('franchise/_form.html.twig') }}
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block frooter %}
+
+    {% include 'header/footer.html.twig' %}
+
+{% endblock %}

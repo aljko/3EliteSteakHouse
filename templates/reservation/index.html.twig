@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block body %}
+
+    {% if is_granted('ROLE_SUBSCRIBER') %}
+
+        <div class="blockImgResa">
+            <img class="imgResa" alt="image du restaurant">
+        </div>
+        <div class="contenuResa">
+            <div class="contenuFomResa">
+                {{ include('reservation/_form.html.twig') }}
+            </div>
+            <div class="blockContenuResa">
+                <h3 class="smallTitleResa">Horaires&thinsp;:</h3>
+                <p class="laberResa" >
+                    Lundi à Vendredi&thinsp;: 12h&thinsp;-&thinsp;23h
+                    <br>
+                    Samedi&thinsp;: 15h&thinsp;-&thinsp;minuit
+                </p>
+            </div>
+        </div>
+
+    {% elseif is_granted('ROLE_ADMIN') %}
+
+        <h1>Reservation index admin</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Date et heure</th>
+                <th>Etat reservation</th>
+                <th>Etat mail</th>
+                <th>Nombre de personnes</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.nom }}</td>
+                    <td>{{ reservation.date ? reservation.date|date('Y-m-d H:i') : '' }}</td>
+                    <td>{{ reservation.etatReservation }}</td>
+                    <td>{{ reservation.etatMail }}</td>
+                    <td>{{ reservation.personnes }}</td>
+                    <td>
+                        <a href="{{ path('reservation_accepter', {'id': reservation.id}) }}">Accepter</a>
+                        <a href="{{ path('reservation_refuser', {'id': reservation.id}) }}">Refuser</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+
+{% endblock %}
